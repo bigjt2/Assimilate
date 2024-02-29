@@ -1,0 +1,42 @@
+Steps to Add a New Level:
+
+>>Background:
+x1.  Code metatiles and attributes into appropriate background.i file.
+x2.  Add the init_pb_attrXX table at bottom of appropriate background.i file.
+x3.  Add the bg pallette for the level in background1.i file.  Remember, ALL are in bg1.i.
+x4.  Add the new background, attribute, init_pb_attrib, bg & sp palette indexes in numbers.i.
+
+>>Collision/Arrows:
+x5.  Code collision objects and arrow positions into appropriate collision_objects.i file.
+x6.  Add the new collision_object and arrow_location indexes in numbers.i.
+
+>>Enemy & Item Data:
+- Add a label under level_object_index in object_tables.i.  Also, be sure to
+    add the new .dw label in the binary data under level_object_index at the
+    top of the file.
+
+>>Bank Mapping:
+x13. Add correct starting PRG and CHR banks in bank_map table within numbers.i.
+     MAKE SURE you add the word pointer indexes under the bank_map label.
+
+>>Level Variables Init:
+x14. In appropriate level_startsX.asm file, add the new start data.
+    The following variables will most likely need adjusted: level, metatile_indx,
+    frst_Background, finl_Background.
+    Adjust others later for desired difficulty level and aesthetics.
+
+>>Cutscenes:
+15. In cs_starts.asm, add the lead-in for new level's cutscene.
+16. In cut_scene.asm, add the new CS_InitX and change the text in the text
+    tables at the bottom as needed.
+17. Also add the new init label in CutScene_Init_JumpTable near bottom.
+18. Add new data in the tables CutSceneTimes and CutSceneEvents.
+
+>>Final:
+19. Add lables for Cutscene Start and Level Start lables in level_startups table
+    near the bottom of assimilate.asm file.
+20. Adjust the CURRENT MAX hardcodes in Title_Screen sub within title_screen.asm file.
+    Also, near the bottom add the appropriate number in Title_level_index table so
+    the title screen jumps to correct starting position.
+
+21. Save everything and prepare to have all kinds of fun debugging!
